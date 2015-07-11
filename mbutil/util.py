@@ -309,7 +309,7 @@ def mbtiles_to_disk(mbtiles_file, directory_path, **kwargs):
         if callback in (None, "", "false", "null"):
             f.write(json.dumps(grid_json))
         else:
-            callback_xyz = callback.replace('{x}', tile_column).replace('{y}', y).replace('{z}', zoom_level)
+            callback_xyz = callback.replace('{x}', str(tile_column)).replace('{y}', str(y)).replace('{z}', str(zoom_level))
             f.write('%s(%s);' % (callback_xyz, json.dumps(grid_json)))
         f.close()
         done = done + 1
